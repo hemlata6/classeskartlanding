@@ -1,0 +1,31 @@
+# Firebase Hosting - Performance Optimized Configuration
+
+# Cache static assets for 1 year
+Cache-Control: max-age=31536000
+static/**
+
+# Cache JS and CSS files for 1 year
+Cache-Control: max-age=31536000
+**/*.js
+**/*.css
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.svg
+**/*.webp
+
+# Don't cache HTML files
+Cache-Control: max-age=0
+**/*.html
+**/*.json
+
+# Security headers
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Enable compression
+Content-Encoding: gzip
