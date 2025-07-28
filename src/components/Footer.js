@@ -22,10 +22,13 @@ import {
   LocationOn as LocationOnIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import Logo from '../C (2).png';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
   const theme = useTheme();
    const isMobile = useMediaQuery("(max-width:600px)");
+   const navigate = useNavigate();
 
   const quickLinks = [
     { name: 'About Us', href: '/why-choose-us' },
@@ -113,8 +116,9 @@ const Footer = () => {
             >
               <Typography
                 variant="h4"
-                component="a"
-                href="/"
+                // component="a"
+                // href="/"
+                onClick={() => navigate('/')}
                 sx={{
                   fontSize: '1.75rem',
                   fontWeight: 800,
@@ -124,9 +128,22 @@ const Footer = () => {
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
                   cursor: 'pointer',
+                  display: isMobile ? 'flex' : 'block',
+                  alignItems: 'center',
+                  gap: 1,
                 }}
               >
-                ClassKart
+                 <img src={Logo} alt="ClassesKart Logo" style={{ width: 80, marginBottom: '1rem' }} />
+                {/* ClassesKart */}
+                <Typography 
+                sx={{
+                  color:'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)',
+                  fontSize: '1.5rem',
+                  fontWeight: 800,
+                }}
+                >
+                  ClassesKart
+                </Typography>
               </Typography>
 
               <Typography

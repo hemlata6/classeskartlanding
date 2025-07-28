@@ -146,7 +146,7 @@ const NotificationBar = () => {
                 }
               </> :
                 <Stack direction={'row'} spacing={2} alignItems="center" justifyContent="center" sx={{ overflow: 'hidden' }}>
-                  <CampaignIcon sx={{ color: '#fff' }} />
+                  {/* <CampaignIcon sx={{ color: '#fff' }} /> */}
                   <motion.div
                     animate={{
                       x: ['-100%', '100%'],

@@ -233,7 +233,7 @@ const Header = () => {
                     WebkitTextFillColor: 'transparent',
                   }}
                 >
-                  Classkart
+                  ClassesKart
                 </Typography>
               </Box>
             </motion.div>

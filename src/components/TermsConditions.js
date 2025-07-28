@@ -113,9 +113,9 @@ We do not guarantee that:
     ];
 
     return (
-        <Box sx={{ background: 'linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%)', py: { xs: 4, md: 4 } }}>
+        <Box sx={{ background: 'linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%)', py: { xs: 1, md: 4 } }}>
             <Container maxWidth="md">
-                <Box sx={{ textAlign: 'center', mb: 6 }}>
+                <Box sx={{ textAlign: 'center', mb: 2 }}>
                     <Chip
                         icon={<VerifiedUserIcon />}
                         label="Legal Document"
@@ -124,7 +124,7 @@ We do not guarantee that:
                             color: '#1e40af',
                             fontWeight: 600,
                             px: 2,
-                            py: 1,
+                            py: 0,
                             mb: 3,
                             fontSize: '0.875rem'
                         }}

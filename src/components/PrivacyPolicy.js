@@ -22,9 +22,9 @@ const PrivacyPolicy = () => {
             background: 'linear-gradient(135deg, rgba(248,250,252,0.95) 0%, rgba(255,255,255,0.98) 50%, rgba(240,249,255,0.95) 100%)',
             position: 'relative',
             overflow: 'hidden',
-            py: { xs: 2, md: 3 },
+            py: { xs: 0, md: 3 },
             // minHeight: '100vh',
-            mt: 2
+            mt: 0
         }}>
             {/* Background Decorative Elements */}
             <Box sx={{
@@ -161,7 +161,7 @@ const PrivacyPolicy = () => {
                                         textAlign: 'center'
                                     }}
                                 >
-                                    At Classes Kart, we are committed to safeguarding your privacy and ensuring that your personal data is secure, confidential, and handled with the utmost integrity.
+                                    At ClassesKart, we are committed to safeguarding your privacy and ensuring that your personal data is secure, confidential, and handled with the utmost integrity.
                                 </Typography>
                                 <Typography
                                     sx={{
@@ -419,7 +419,7 @@ const PrivacyPolicy = () => {
                                         {[
                                             { title: "In response to court orders, legal notices, or subpoenas", desc: "To enroll you in coaching programs, provide study materials, and offer personalized mentoring." },
                                             { title: "To exercise our legal rights or defend against claims", desc: "To send you important updates, notifications, and information related to your course or inquiries." },
-                                            { title: "To comply with applicable laws or protect the rights, safety, or property of Classes Kart, our users, or the public", desc: "To inform you about new courses, promotions, events, and other educational offerings." }
+                                            { title: "To comply with applicable laws or protect the rights, safety, or property of ClassesKart, our users, or the public", desc: "To inform you about new courses, promotions, events, and other educational offerings." }
                                         ].map((item, index) => (
                                             <Grid item xs={12} md={6} key={index}>
                                                 <Paper sx={{
@@ -556,7 +556,7 @@ const PrivacyPolicy = () => {
                                     </Box>
 
                                     <Typography sx={{ mb: 3, color: '#666', fontSize: '16px' }}>
-                                        You can review, update, or delete your personal information by logging into your Classes Kart account. You also have the right to:
+                                        You can review, update, or delete your personal information by logging into your ClassesKart account. You also have the right to:
                                     </Typography>
 
                                     <Grid container spacing={2}>

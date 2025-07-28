@@ -149,7 +149,7 @@ const BannerSlider = () => {
         marginLeft: 'calc(-50vw + 50%)',
         marginRight: 'calc(-50vw + 50%)',
         mt:[4.5, 5], // Add top padding for fixed header
-        height: isMobile ? '16vh' : '65vh'
+        height: isMobile ? '20vh' : '65vh'
       }}
     >
       {/* Carousel Container */}

@@ -20,7 +20,7 @@ const WhyChooseClassesKart = () => {
     return (
         <Box sx={{
             background: 'linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%)',
-            py: { xs: 4, md: 10 }
+            py: { xs: 6, md: 10 }
         }}>
             <Container maxWidth="md">
                 <Box sx={{ textAlign: 'center', mb: 6 }}>
@@ -46,7 +46,7 @@ const WhyChooseClassesKart = () => {
                         WebkitTextFillColor: 'transparent',
                         fontSize: { xs: '2.5rem', md: '3.5rem' }
                     }}>
-                        Why Choose Classes Kart?
+                        Why Choose ClassesKart?
                     </Typography>
                     <Typography sx={{
                         color: '#64748b',

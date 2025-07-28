@@ -56,7 +56,7 @@ Classes Kart reserves the right to approve/deny based on evidence and product us
     return (
         <Box sx={{
             background: 'linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%)',
-            py: { xs: 4, md: 10 }
+            py: { xs: 2, md: 4 }
         }}>
             <Container maxWidth="md">
                 <Box sx={{ textAlign: 'center', mb: 6 }}>

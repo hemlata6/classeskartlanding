@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Typography, Fade } from '@mui/material';
 import { motion } from 'framer-motion';
+import Logo from '../C (2).png'
+import { Stack } from '@mui/system';
 
 const LoadingOverlay = ({ open }) => {
   if (!open) return null;
@@ -23,22 +25,33 @@ const LoadingOverlay = ({ open }) => {
         }}
       >
         <Box sx={{ textAlign: 'center' }}>
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          >
-            <Box
-              sx={{
-                width: 60,
-                height: 60,
-                border: '4px solid rgba(255,255,255,0.3)',
-                borderTop: '4px solid white',
-                borderRadius: '50%',
-                margin: '0 auto 2rem',
-              }}
-            />
-          </motion.div>
-          
+          <Box sx={{ position: 'relative', width: 60, height: 60, margin: '0 auto 2rem' }}>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              style={{ width: '100%', height: '100%' }}
+            >
+              <Box
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  border: '4px solid rgba(255,255,255,0.3)',
+                  borderTop: '4px solid white',
+                  borderRadius: '50%',
+                }}
+              />
+            </motion.div>
+            <img src={Logo} alt="ClassesKart Logo" style={{
+              width: 36,
+              height: 36,
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              objectFit: 'contain',
+              borderRadius: '50%'
+            }} />
+          </Box>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,7 +66,7 @@ const LoadingOverlay = ({ open }) => {
                 color: 'white',
               }}
             >
-              Welcome to Classkart
+              Welcome to ClassesKart
             </Typography>
             <Typography
               variant="body1"

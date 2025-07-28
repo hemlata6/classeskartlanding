@@ -496,7 +496,7 @@ const FreeResources = () => {
                         border: '1px solid rgba(255,255,255,0.4)',
                         boxShadow: '0 30px 80px rgba(0,0,0,0.15), 0 15px 40px rgba(0,0,0,0.08)',
                         maxWidth: '480px',
-                        width: '90%'
+                        width: '90%',
                     }
                 }}
                 BackdropProps={{
@@ -506,7 +506,7 @@ const FreeResources = () => {
                     }
                 }}
             >
-                <DialogContent sx={{ p: 0, overflow: 'hidden' }}>
+                <DialogContent sx={{ p: 0, overflow: 'scroll' }}>
                     <Box sx={{
                         background: 'linear-gradient(135deg, #0287D7 0%, #0066cc 100%)',
                         p: 4,
@@ -540,11 +540,11 @@ const FreeResources = () => {
                                 zIndex: 1
                             }}
                         >
-                            <CloseIcon />
+                            <CloseIcon fontSize="1rem" />
                         </IconButton>
                         
                         <Box sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-                            <LibraryBooksIcon sx={{ fontSize: 50, mb: 2, opacity: 0.9 }} />
+                            <LibraryBooksIcon sx={{ fontSize: 50, mb: 1, opacity: 0.9 }} />
                             <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 , color: 'white' }}>
                                 🎯 Claim Your Free Resource
                             </Typography>
@@ -554,8 +554,8 @@ const FreeResources = () => {
                         </Box>
                     </Box>
 
-                    <Box sx={{ p: 4 }}>
-                        <Grid container spacing={3}>
+                    <Box sx={{ p: 2 }}>
+                        <Grid container spacing={2}>
                             {/* Name Field */}
                             <Grid item xs={12}>
                                 <Typography sx={{ 
