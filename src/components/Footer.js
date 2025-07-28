@@ -133,7 +133,7 @@ const Footer = () => {
                   gap: 1,
                 }}
               >
-                 <img src={Logo} alt="ClassesKart Logo" style={{ width: 80, marginBottom: '1rem' }} />
+                 <img src={Logo} alt="ClassesKart Logo" style={{ width: 80, marginBottom: '1rem' , borderRadius: '50%' }} />
                 {/* ClassesKart */}
                 <Typography 
                 sx={{
