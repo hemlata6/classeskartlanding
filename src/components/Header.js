@@ -40,7 +40,7 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const { cartItems = [] } = useCart() || {};
-  const cartCount = cartItems.length;
+  const cartCount = cartItems?.length;
   const [cartItemsArray, setCartItemsArray] = useState([]);
   // console.log('Cart Items:', cartItemsArray);
   const [anchorElTestSeries, setAnchorElTestSeries] = useState(null);
@@ -419,7 +419,7 @@ const Header = () => {
                       },
                     }}
                   >
-                    <Badge badgeContent={cartItemsArray.length} color="warning">
+                    <Badge badgeContent={cartItemsArray?.length} color="warning">
                       <ShoppingCartIcon />
                     </Badge>
                   </IconButton>
