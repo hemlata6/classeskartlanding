@@ -114,37 +114,40 @@ const Footer = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Typography
+              <Box
                 variant="h4"
                 // component="a"
                 // href="/"
                 onClick={() => navigate('/')}
                 sx={{
-                  fontSize: '1.75rem',
-                  fontWeight: 800,
-                  mb: 3,
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  // fontSize: '1.75rem',
+                  // fontWeight: 800,
+                  mb: 2,
+                  // background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  // WebkitBackgroundClip: 'text',
+                  // WebkitTextFillColor: 'transparent',
+                  // backgroundClip: 'text',
                   cursor: 'pointer',
                   display: isMobile ? 'flex' : 'block',
                   alignItems: 'center',
                   gap: 1,
+                  justifyContent:'start'
                 }}
               >
-                 <img src={Logo} alt="ClassesKart Logo" style={{ width: 80, marginBottom: '1rem' , borderRadius: '50%' }} />
+                 <img src={Logo} alt="ClassesKart Logo" style={{ width: 60, marginBottom: '1rem' , borderRadius: '50%' , position: 'relative' , top: '0.5rem' }} />
                 {/* ClassesKart */}
                 <Typography 
                 sx={{
-                  color:'linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%)',
-                  fontSize: '1.5rem',
+                  color:'#4f46e5 !important',
+                  fontSize: '2rem',
                   fontWeight: 800,
+                  // position: 'absolute',
+                  // top: '1rem'
                 }}
                 >
                   ClassesKart
                 </Typography>
-              </Typography>
+              </Box>
 
               <Typography
                 variant="body1"
