@@ -176,11 +176,11 @@ const MultipleCourseCart = () => {
                                 <Typography variant="h4" sx={{
                                     fontWeight: 600,
                                     fontSize: { xs: '1.75rem', md: '2.25rem' },
-                                    mb: 0.5, color:'#fff'
+                                    mb: 0.5, color: '#fff'
                                 }}>
                                     Shopping Cart
                                 </Typography>
-                                <Typography variant="body1" sx={{ opacity: 0.9, color:'#fff' }}>
+                                <Typography variant="body1" sx={{ opacity: 0.9, color: '#fff' }}>
                                     {cartCourses?.length > 0
                                         ? `${cartCourses.length} item${cartCourses.length !== 1 ? 's' : ''} in your cart`
                                         : 'Your cart is empty'
@@ -528,7 +528,7 @@ const MultipleCourseCart = () => {
                                         bgcolor: '#1f2937',
                                         color: 'white'
                                     }}>
-                                        <Typography variant="h6" sx={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 , color:'#fff'}}>
+                                        <Typography variant="h6" sx={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1, color: '#fff' }}>
                                             <BusinessIcon />
                                             Order Summary
                                         </Typography>
@@ -536,29 +536,41 @@ const MultipleCourseCart = () => {
 
                                     <Box sx={{ p: 3, bgcolor: '#ffffff' }}>
                                         <Stack spacing={2} sx={{ mb: 3 }}>
-                                            {cartCourses.map((item, i) => (
-                                                <Box key={i} sx={{
-                                                    display: 'flex',
-                                                    justifyContent: 'space-between',
-                                                    alignItems: 'center',
-                                                    py: 1
-                                                }}>
+                                            {cartCourses.map((item, i) => {
+                                                console.log("iiiiiii", item);
+
+                                                return <>
+                                                    <Box key={i} sx={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        alignItems: 'center',
+                                                        py: 1
+                                                    }}>
+                                                        <Typography variant="body2" sx={{
+                                                            color: '#374151',
+                                                            flex: 1,
+                                                            pr: 2,
+                                                            lineHeight: 1.4
+                                                        }}>
+                                                            {item?.title}
+                                                        </Typography>
+                                                        <Typography variant="body1" sx={{
+                                                            fontWeight: 600,
+                                                            color: '#111827'
+                                                        }}>
+                                                            {item?.paid ? `₹${item?.finalPrice.toFixed(2)}` : 'FREE'}
+                                                        </Typography>
+                                                    </Box>
                                                     <Typography variant="body2" sx={{
                                                         color: '#374151',
-                                                        flex: 1,
-                                                        pr: 2,
-                                                        lineHeight: 1.4
+                                                        marginTop: "0px !important",
+                                                        fontStyle: 'italic',
+                                                        fontSize: '0.75rem'
                                                     }}>
-                                                        {item?.title}
+                                                        {item?.setting?.inclusiveTax === true && item?.setting?.internetHandlingInclusive === true ? '(Inclusive of all taxes)' : ''}
                                                     </Typography>
-                                                    <Typography variant="body1" sx={{
-                                                        fontWeight: 600,
-                                                        color: '#111827'
-                                                    }}>
-                                                        {item?.paid ? `₹${item?.finalPrice.toFixed(2)}` : 'FREE'}
-                                                    </Typography>
-                                                </Box>
-                                            ))}
+                                                </>
+                                            })}
                                         </Stack>
 
                                         <Divider sx={{ my: 2 }} />
@@ -714,7 +726,7 @@ const MultipleCourseCart = () => {
                                     },
                                 }}
                             >
-                                <HomeIcon sx={{ cursor: "pointer" , fontSize: '2rem' }} />
+                                <HomeIcon sx={{ cursor: "pointer", fontSize: '2rem' }} />
                             </IconButton>
                         </Tooltip>
                     </motion.div>
