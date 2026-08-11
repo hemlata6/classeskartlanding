@@ -15,7 +15,7 @@ import {
     CardMedia,
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import HomeIcon from '@mui/icons-material/Home';
 import Network from '../network/Network';
@@ -26,6 +26,8 @@ const TestSeriesPage = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const examFromUrl = searchParams.get('exam'); // e.g. 'CS', 'CA', 'CMA'
 
     const [domains, setDomains] = useState([]);
     const [selectedDomain, setSelectedDomain] = useState(null);
@@ -98,10 +100,18 @@ const TestSeriesPage = () => {
                     });
                     setDomains(examDomains);
 
-                    // Default select first domain (prefer CS)
+                    // Pre-select domain based on URL param, fallback to CS, then first
                     if (examDomains.length > 0) {
-                        const csDomain = examDomains.find(d => d.name?.toLowerCase().includes('cs'));
-                        setSelectedDomain(csDomain || examDomains[0]);
+                        let targetDomain = null;
+                        if (examFromUrl) {
+                            targetDomain = examDomains.find(d =>
+                                d.name?.toLowerCase().includes(examFromUrl.toLowerCase())
+                            );
+                        }
+                        if (!targetDomain) {
+                            targetDomain = examDomains.find(d => d.name?.toLowerCase().includes('cs'));
+                        }
+                        setSelectedDomain(targetDomain || examDomains[0]);
                     }
                 }
             }

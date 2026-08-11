@@ -116,7 +116,7 @@ const CategorySection = () => {
               <Grid item xs={12} md={4} key={index}>
                 <Box
                   component='a'
-                  href={'/test-series'}
+                  href={`/test-series?exam=${category.type}`}
                   sx={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
                 >
                 <motion.div
