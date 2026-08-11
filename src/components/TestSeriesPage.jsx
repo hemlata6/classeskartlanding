@@ -476,19 +476,16 @@ const TestSeriesPage = () => {
                         >
                             {(() => {
                                 const filteredBanners = bannerList.filter(banner => {
-                                    if (!banner.domains || banner.domains.length === 0) return false;
+                                    // Only show banners with exactly ONE domain to avoid duplicates
+                                    if (!banner.domains || banner.domains.length !== 1) return false;
                                     if (selectedInstitute === 'all') {
-                                        return banner.domains.some(d =>
-                                            institutes.some(inst =>
-                                                inst.name?.toLowerCase() === d.name?.toLowerCase()
-                                            )
+                                        return institutes.some(inst =>
+                                            inst.name?.toLowerCase() === banner.domains[0].name?.toLowerCase()
                                         );
                                     }
                                     const selectedInst = institutes.find(i => i.id === selectedInstitute);
                                     if (!selectedInst) return false;
-                                    return banner.domains.some(d =>
-                                        d.name?.toLowerCase() === selectedInst.name?.toLowerCase()
-                                    );
+                                    return banner.domains[0].name?.toLowerCase() === selectedInst.name?.toLowerCase();
                                 });
 
                                 if (filteredBanners.length === 0) {

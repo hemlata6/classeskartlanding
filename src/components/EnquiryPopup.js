@@ -23,7 +23,7 @@ import {
   School as SchoolIcon,
 } from '@mui/icons-material';
 import { BASE_URL } from '../network/endpoints';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Network from '../network/Network';
 import instId from '../network/instituteId';
 import axios from 'axios';
@@ -350,35 +350,33 @@ const EnquiryPopup = ({ open, onClose }) => {
 
   return (
     <>
-      <AnimatePresence>
-        {open && (
-          <Dialog
-            open={open}
-            onClose={onClose}
-            maxWidth="sm"
-            fullWidth
-            PaperProps={{
-              sx: {
-                borderRadius: '20px',
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                overflow: 'visible',
-              },
-            }}
-            BackdropProps={{
-              sx: {
-                backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                backdropFilter: 'blur(8px)',
-              },
-            }}
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ type: "spring", duration: 0.5 }}
-            >
+      <Dialog
+        open={open}
+        onClose={onClose}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: '20px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.3)',
+            overflow: 'visible',
+          },
+        }}
+        BackdropProps={{
+          sx: {
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backdropFilter: 'blur(8px)',
+          },
+        }}
+        transitionDuration={200}
+      >
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
               {/* Header */}
               <DialogTitle
                 sx={{
@@ -745,8 +743,6 @@ const EnquiryPopup = ({ open, onClose }) => {
               />
             </motion.div>
           </Dialog>
-        )}
-      </AnimatePresence>
 
       <Snackbar
         open={snackbar.open}
