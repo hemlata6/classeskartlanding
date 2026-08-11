@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Fab, useMediaQuery } from '@mui/material';
 import { Box } from '@mui/material';
 import { SnackbarProvider } from 'notistack';
@@ -35,6 +35,7 @@ import EnquiryPopup from './components/EnquiryPopup';
 import FreeResources from './components/FreeResources';
 import Home from './components/Home';
 import TestSeriesExploreSection from './components/TestSeriesExploreSection';
+import TestSeriesPage from './components/TestSeriesPage';
 import CheckoutPage from './components/CheckoutPage';
 import Network from './network/Network';
 import Endpoints from './network/endpoints';
@@ -204,16 +205,29 @@ const theme = createTheme({
   },
 });
 
-function App() {
-
+// Inner component inside Router — can use useLocation reactively
+function AppContent() {
+  const location = useLocation();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [loading, setLoading] = useState(true);
   const [enquiryOpen, setEnquiryOpen] = useState(false);
 
+  const hideHeaderRoutes = [
+    '/privacypolicy',
+    '/terms-and-conditions',
+    '/refund-policy',
+    '/test-series'
+  ];
+  const testSeriesExploreRegex = /^\/[\w-]+\/[\w-]+$/;
+  const cartCourseRegex = /^\/cart-course$/;
+  const shouldHideHeader =
+    hideHeaderRoutes.includes(location.pathname) ||
+    testSeriesExploreRegex.test(location.pathname) ||
+    cartCourseRegex.test(location.pathname);
+
   const fetchInstitue = async () => {
     try {
       const response = await Network.fetchInstitute(instId);
-      // console.log("Institute response:", response);
       Endpoints.mediaBaseUrl = response?.instituteTechSetting?.mediaUrl
     } catch (error) {
       console.error("Error fetching institute data:", error);
@@ -225,10 +239,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Simulate loading
     const timer = setTimeout(() => {
       setLoading(false);
-      // Show enquiry popup after 3 seconds
       setTimeout(() => {
         setEnquiryOpen(true);
       }, 3000);
@@ -241,112 +253,72 @@ function App() {
     setEnquiryOpen(false);
   };
 
-  const handleEnquiryOpen = () => {
-    setEnquiryOpen(true);
-  };
+  return (
+    <Box sx={{
+      background: theme.palette.background.default,
+      pt: shouldHideHeader ? 0 : { xs: '64px', md: '80px' }
+    }}>
+      {/* Loading Overlay */}
+      <LoadingOverlay open={loading} />
 
-  // console.log('window.location', window.location)
+      {/* Enquiry Popup: Show on all routes except /cart-course */}
+      {location.pathname !== '/cart-course' && (
+        <EnquiryPopup open={enquiryOpen} onClose={handleEnquiryClose} />
+      )}
 
+      {/* Notification Bar */}
+      {!shouldHideHeader && <NotificationBar />}
+
+      {/* Fixed Header */}
+      {!shouldHideHeader && (
+        <Box sx={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1200 }}>
+          <Header />
+        </Box>
+      )}
+
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/free-resources" element={<FreeResources />} />
+        <Route path="/test-series" element={<TestSeriesPage />} />
+        <Route path="/:instId/:instituteSlug" element={<TestSeriesExploreSection />} />
+        <Route path="/cart-course" element={<MultipleCourseCart />} />
+        <Route path="/privacypolicy" element={<PrivacyAndPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndCondtion />} />
+        <Route path="/why-choose-us" element={<WhyChooseClassesKart />} />
+        <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/success-stories" element={<SuccessStories />} />
+      </Routes>
+      <Fab
+        color="primary"
+        aria-label="call"
+        sx={{
+          position: 'fixed',
+          bottom: 120,
+          right: 35,
+          zIndex: 1000,
+        }}
+        onClick={() => window.location.href = 'tel:+919049730883'}
+      >
+        <CallIcon />
+      </Fab>
+      <FloatingWhatsApp phoneNumber={'+91-9049730883'} accountName="ClassKart"
+        avatar={whatsApplog}
+        chatMessage="Hello! How can I help you?" className="pro-vidya-whatsapp-avatar" />
+      {/* Footer */}
+      <Footer />
+    </Box>
+  );
+}
+
+function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <SnackbarProvider maxSnack={3}>
         <CartProvider>
           <Router>
-            <Box sx={{
-              // minHeight: '100vh', 
-              background: theme.palette.background.default,
-              // pb: { xs: '80px', md: 0 } // Add bottom padding on mobile for sticky menu
-              pt: { xs: '64px', md: '80px' } // Add top padding for fixed header (adjust if your AppBar height differs)
-            }}>
-              {/* Loading Overlay */}
-              <LoadingOverlay open={loading} />
-
-              {/* Enquiry Popup: Show on all routes except /cart-course */}
-              {(() => {
-                const { pathname } = window.location;
-                const hideEnquiry = pathname === '/cart-course';
-                return !hideEnquiry ? (
-                  <EnquiryPopup open={enquiryOpen} onClose={handleEnquiryClose} />
-                ) : null;
-              })()}
-
-              {/* Notification Bar */}
-              {/* <NotificationBar /> */}
-
-              {/* Header */}
-              {/* Use react-router location for reactivity */}
-              {(() => {
-                const { pathname } = window.location;
-                // Hide only on static routes, not on /:instId/:instituteSlug
-                const hideHeaderRoutes = [
-                  '/privacypolicy',
-                  '/terms-and-conditions',
-                  '/refund-policy',
-                  '/cart-course'
-                ];
-                const shouldHide = hideHeaderRoutes.includes(pathname);
-                return !shouldHide && <NotificationBar />;
-              })()}
-              {/* Fixed Header */}
-              {(() => {
-                // Use react-router location for reactivity
-                const { pathname } = window.location;
-                const hideHeaderRoutes = [
-                  '/privacypolicy',
-                  '/terms-and-conditions',
-                  '/refund-policy',
-                ];
-                // Regex for /:instId/:instituteSlug and /cart-course
-                const testSeriesExploreRegex = /^\/[\w-]+\/[\w-]+$/;
-                const cartCourseRegex = /^\/cart-course$/;
-                const shouldHide =
-                  hideHeaderRoutes.includes(pathname) ||
-                  testSeriesExploreRegex.test(pathname) ||
-                  cartCourseRegex.test(pathname);
-                return !shouldHide && (
-                  <Box sx={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1200 }}>
-                    <Header />
-                  </Box>
-                );
-              })()}
-
-              {/* Routes */}
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/free-resources" element={<FreeResources />} />
-                <Route path="/:instId/:instituteSlug" element={<TestSeriesExploreSection />} />
-                <Route path="/cart-course" element={<MultipleCourseCart />} />
-                <Route path="/privacypolicy" element={<PrivacyAndPolicy />} />
-                <Route path="/terms-and-conditions" element={<TermsAndCondtion />} />
-                <Route path="/why-choose-us" element={<WhyChooseClassesKart />} />
-                <Route path="/refund-policy" element={<RefundPolicy />} />
-                <Route path="/success-stories" element={<SuccessStories />} />
-              </Routes>
-              <Fab
-                color="primary"
-                aria-label="call"
-                sx={{
-                  position: 'fixed',
-                  bottom: 120,
-                  // right: isMobile ? 16 : 38,
-                  right: 35,
-                  zIndex: 1000,
-                }}
-                onClick={() => window.location.href = 'tel:+919049730883'}
-              >
-                <CallIcon />
-              </Fab>
-              <FloatingWhatsApp phoneNumber={'+91-9049730883'} accountName="ClassKart"
-                avatar={whatsApplog} // Change this to your desired image URL
-                chatMessage="Hello! How can I help you?" className="pro-vidya-whatsapp-avatar" />
-              {/* Footer */}
-              <Footer />
-
-              {/* Mobile Sticky Menu */}
-              {/* <MobileStickyMenu onEnquiryClick={handleEnquiryOpen} /> */}
-
-            </Box>
+            <AppContent />
           </Router>
         </CartProvider>
       </SnackbarProvider>

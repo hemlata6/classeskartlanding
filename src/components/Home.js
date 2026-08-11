@@ -8,6 +8,7 @@ import AppShowcaseSection from './AppShowcaseSection';
 import ContactSection from './ContactSection';
 import StudentShorts from './StudentShorts';
 import Header from './Header';
+import FooterBannerSlider from './FooterBannerSlider';
 
 
 const Home = () => {
@@ -48,16 +49,18 @@ const Home = () => {
       {/* Student Shorts Section */}
       <StudentShorts />
 
+      <FooterBannerSlider />
       {/* Video Section */}
       <VideoSection />
+      
 
+
+      {/* App Showcase Section */}
+      <AppShowcaseSection />
       {/* Banner Scroller Section */}
       <div ref={bannerScrollerRef}>
         <BannerScrollerSection />
       </div>
-
-      {/* App Showcase Section */}
-      <AppShowcaseSection />
 
       {/* Contact Section */}
       {/* <ContactSection /> */}

@@ -1,74 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Typography,
   Container,
   Grid,
-  Card,
-  CardContent,
-  Button,
   useTheme,
-  Popover,
-  Dialog,
 } from '@mui/material';
-import {
-  Calculate as CalculateIcon,
-  Balance as BalanceIcon,
-  PieChart as PieChartIcon,
-} from '@mui/icons-material';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import TestSeriesMenu from './TestSeriesMenu';
+
+// Import local images
+import caTestSeriesImg from '../catestseries.png';
+import csTestSeriesImg from '../cstestseries.png';
+import cmaTestSeriesImg from '../cmatestseries.png';
 
 const CategorySection = () => {
   const theme = useTheme();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [anchorElTestSeries, setAnchorElTestSeries] = useState(null);
-  const openTestSeries = Boolean(anchorElTestSeries);
-  const [selectedType, setSelectedType] = useState('');
-
-  const handleTestSeriesClick = (event, type) => {
-    setAnchorElTestSeries(event.currentTarget);
-    setSelectedType(type);
-  };
-
-  const handleCloseTestSeries = () => {
-    setAnchorElTestSeries(null);
-  };
-
 
   const categories = [
     {
       id: 1,
-      title: "CA Test Series",
-      description: "Comprehensive test series for Chartered Accountancy with detailed solutions and performance analytics.",
-      icon: CalculateIcon,
-      iconColor: "#4361ee",
-      iconBg: "#eaefff",
-      cta: "Coming Soon",
-      type: "CA"
+      image: caTestSeriesImg,
+      alt: "CA Test Series Background",
+      type: "CA",
     },
     {
       id: 2,
-      title: "CS Test Series",
-      description: "Prepare effectively for Company Secretary exams with our well-designed test series and expert guidance.",
-      icon: BalanceIcon,
-      iconColor: "#10b981",
-      iconBg: "#e6f8f0",
-      cta: "Start CS Tests",
-      type: "CS"
+      image: csTestSeriesImg,
+      alt: "CS Test Series Background",
+      type: "CS",
     },
     {
       id: 3,
-      title: "CMA Test Series",
-      description: "Practice-oriented test series for Cost Management Accountant students with industry-relevant case studies.",
-      icon: PieChartIcon,
-      iconColor: "#f72585",
-      iconBg: "#fff0f6",
-      cta: "Coming Soon",
-      type: "CMA"
+      image: cmaTestSeriesImg,
+      alt: "CMA Test Series Background",
+      type: "CMA",
     }
   ];
 
@@ -135,19 +103,6 @@ const CategorySection = () => {
             >
               Prepare with your Favorite Teachers
             </Typography>
-            {/* <Typography
-              variant="h6"
-              sx={{
-                color: theme.palette.text.secondary,
-                maxWidth: '48rem',
-                mx: 'auto',
-                fontSize: '1.125rem',
-                lineHeight: 1.7,
-                mt: 4,
-              }}
-            >
-              Choose from our specialized test series designed for professional accounting and finance certifications
-            </Typography> */}
           </Box>
         </motion.div>
 
@@ -159,181 +114,116 @@ const CategorySection = () => {
           <Grid container spacing={4}>
             {categories.map((category, index) => (
               <Grid item xs={12} md={4} key={index}>
+                <Box
+                  component={category.type === 'CS' ? 'a' : 'div'}
+                  href={category.type === 'CS' ? '/test-series' : undefined}
+                  sx={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                >
                 <motion.div
                   variants={cardVariants}
-                  whileHover={{
-                    y: -8,
-                    transition: { type: "spring", stiffness: 300 }
-                  }}
+                  whileHover="hover"
+                  initial="rest"
+                  animate="rest"
+                  style={{ cursor: category.type === 'CS' ? 'pointer' : 'default' }}
                 >
-                  <Card
-                    sx={{
-                      height: '100%',
-                      background: 'rgba(255, 255, 255, 0.9)',
-                      backdropFilter: 'blur(20px)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: '16px',
-                      p: 2,
+                  <motion.div
+                    style={{
                       position: 'relative',
                       overflow: 'hidden',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      '&:hover': {
-                        borderColor: 'rgba(79, 70, 229, 0.3)',
-                        background: 'rgba(255, 255, 255, 0.95)',
-                        boxShadow: theme.shadows[4],
-                        '& .category-icon': {
-                          transform: 'scale(1.1) translateY(-5px)',
-                        },
-                      },
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '0.25rem',
-                        background: theme.palette.primary.main,
-                      },
+                      borderRadius: '12px',
+                      boxShadow: '0px 4px 20px rgba(0,0,0,0.1)',
+                    }}
+                    variants={{
+                      rest: { y: 0 },
+                      hover: {
+                        y: -8,
+                        transition: { type: "spring", stiffness: 300 }
+                      }
                     }}
                   >
-                    <CardContent sx={{ p: 3 }}>
-                      <motion.div
-                        className="category-icon"
-                        animate={{
-                          y: [-5, 5, -5]
-                        }}
-                        transition={{
-                          duration: 6,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            width: 64,
-                            height: 64,
-                            borderRadius: '12px',
-                            background: category.iconBg,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            mb: 3,
-                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                          }}
-                        >
-                          <category.icon
-                            sx={{
-                              fontSize: '1.5rem',
-                              color: category.iconColor
-                            }}
-                          />
-                        </Box>
-                      </motion.div>
+                    {/* Main Image */}
+                    <motion.img
+                      src={category.image}
+                      alt={category.alt}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        borderRadius: '12px',
+                        display: 'block',
+                      }}
+                      variants={{
+                        rest: { scale: 1 },
+                        hover: { scale: 1.05, transition: { duration: 0.5, ease: "easeOut" } }
+                      }}
+                    />
 
-                      <Typography
-                        variant="h5"
-                        sx={{
-                          fontSize: '1.5rem',
-                          fontWeight: 700,
-                          color: theme.palette.text.primary,
-                          mb: 2,
-                        }}
-                      >
-                        {category.title}
-                      </Typography>
+                    {/* Glass Overlay */}
+                    <motion.div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                        // backdropFilter: 'blur(2px)',
+                        borderRadius: '12px',
+                        pointerEvents: 'none',
+                      }}
+                      variants={{
+                        rest: { opacity: 0 },
+                        hover: { opacity: 1, transition: { duration: 0.4 } }
+                      }}
+                    />
 
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: theme.palette.text.secondary,
-                          mb: 4,
-                          lineHeight: 1.7,
-                        }}
-                      >
-                        {category.description}
-                      </Typography>
+                    {/* Decorative Glossy Dot */}
+                    <motion.div
+                      style={{
+                        position: 'absolute',
+                        top: '20px',
+                        right: '20px',
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        background: 'rgba(255, 255, 255, 0.8)',
+                        boxShadow: '0px 0px 15px rgba(255, 255, 255, 0.9)',
+                      }}
+                      variants={{
+                        rest: { opacity: 0, y: 0 },
+                        hover: {
+                          opacity: 0.6,
+                          y: [-3, -8, -3],
+                          transition: {
+                            y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                            opacity: { duration: 0.3 }
+                          }
+                        }
+                      }}
+                    />
 
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Button
-                          onClick={category.cta === 'Start CS Tests' ? (event) => handleTestSeriesClick(event, category.type) : null}
-                          variant="outlined"
-                          sx={{
-                            color: category?.cta === 'Start CS Tests' ? theme.palette.primary.main : theme.palette.error.main,
-                            borderColor: category?.cta === 'Start CS Tests' ? theme.palette.primary.main : theme.palette.error.main,
-                            borderWidth: '2px',
-                            borderRadius: '12px',
-                            px: 3,
-                            py: 1.5,
-                            fontSize: '0.875rem',
-                            fontWeight: 600,
-                            position: 'relative',
-                            overflow: 'hidden',
-                            '&:hover': {
-                              color: 'white',
-                              borderColor: theme.palette.primary.main,
-                              '&::before': {
-                                left: 0,
-                              },
-                            },
-                            '&::before': {
-                              content: '""',
-                              position: 'absolute',
-                              top: 0,
-                              left: '-100%',
-                              width: '100%',
-                              height: '100%',
-                              background: theme.palette.primary.main,
-                              transition: 'left 0.3s ease',
-                              zIndex: -1,
-                            },
-                          }}
-                        >
-                          {category.cta}
-                        </Button>
-                      </motion.div>
-                    </CardContent>
-                  </Card>
+                    {/* Shine Sweep Effect */}
+                    <motion.div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%)',
+                        borderRadius: '12px',
+                        pointerEvents: 'none',
+                      }}
+                      variants={{
+                        rest: { x: '-100%', opacity: 0 },
+                        hover: {
+                          x: '100%',
+                          opacity: 1,
+                          transition: { duration: 0.8, ease: "easeInOut" }
+                        }
+                      }}
+                    />
+                  </motion.div>
                 </motion.div>
+                </Box>
               </Grid>
             ))}
           </Grid>
         </motion.div>
       </Container>
-      {/* <Popover
-        open={openTestSeries}
-        anchorEl={anchorElTestSeries}
-        onClose={handleCloseTestSeries}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'top',
-        }}
-        transformOrigin={{
-          vertical: 'center',
-          horizontal: 'top',
-        }}
-        PaperProps={{
-          sx: {
-            mt: 1,
-            borderRadius: '20px',
-            boxShadow: '0 16px 48px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08)',
-            border: '1px solid rgba(255,255,255,0.2)',
-            overflow: 'visible',
-          },
-        }}
-      > */}
-        <Dialog open={openTestSeries} onClose={handleCloseTestSeries}>
-
-        <TestSeriesMenu
-          setAnchorElTestSeries={setAnchorElTestSeries}
-          mobileDropDown=""
-          handleOpenNavMenuClose={() => setMobileOpen(false)}
-          type={selectedType}
-        />
-        </Dialog>
-      {/* </Popover> */}
     </Box>
   );
 };

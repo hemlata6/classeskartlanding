@@ -51,6 +51,8 @@ const StudentShorts = () => {
             // Replace with actual API endpoint for student videos
             const response = await Network.getShortsApi(body, instId);
 
+            // console.log('Fetched student videos:', response);
+
             if (response && response.videos) {
                 setVideos(response.videos);
             } else {
@@ -518,7 +520,7 @@ const StudentShorts = () => {
                       /> */}
 
                                                     {/* Action Icons */}
-                                                    <Box
+                                                    {/* <Box
                                                         sx={{
                                                             position: 'absolute',
                                                             right: 12,
@@ -549,7 +551,7 @@ const StudentShorts = () => {
                                                         >
                                                             <ShareIcon sx={{ fontSize: 18 }} />
                                                         </IconButton>
-                                                    </Box>
+                                                    </Box> */}
                                                 </Box>
 
                                                 {/* Content */}

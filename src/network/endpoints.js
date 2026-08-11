@@ -17,6 +17,6 @@ const Endpoints = {
   // mediaBaseUrl: "https://media.theoogway.com/",
   // mediaBaseUrl: "https://classiopace.in-maa-1.linodeobjects.com/",
   // mediaBaseUrl: "https://classiosafaltaias.in-maa-1.linodeobjects.com/",
-  mediaBaseUrl: "",
+  mediaBaseUrl: "https://classeskart.in/classioclasskart/",
 };
 export default Endpoints;

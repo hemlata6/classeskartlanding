@@ -105,7 +105,7 @@ const Header = () => {
   const navigationItems = [
     { name: 'Free Resources', badge: null, path: '/free-resources' },
     { name: 'Study Planner', badge: null, path: '#' },
-    { name: 'Test Series', badge: null, path: '#', hasMenu: true },
+    { name: 'Test Series', badge: null, path: '/test-series' },
     { name: 'Upskilling Courses', badge: 'Coming Soon', path: '#' }
   ];
 
@@ -206,7 +206,8 @@ const Header = () => {
                   gap: 1,
                   cursor: 'pointer'
                 }}
-                onClick={() => handleNavigation('/')}
+                component={'a'} href="/"
+                // onClick={() => handleNavigation('/')}
               >
                 <Box
                   component="img"

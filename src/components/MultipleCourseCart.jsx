@@ -561,14 +561,14 @@ const MultipleCourseCart = () => {
                                                             {item?.paid ? `₹${item?.finalPrice.toFixed(2)}` : 'FREE'}
                                                         </Typography>
                                                     </Box>
-                                                    <Typography variant="body2" sx={{
+                                                    {/* <Typography variant="body2" sx={{
                                                         color: '#374151',
                                                         marginTop: "0px !important",
                                                         fontStyle: 'italic',
                                                         fontSize: '0.75rem'
                                                     }}>
                                                         {item?.setting?.inclusiveTax === true && item?.setting?.internetHandlingInclusive === true ? '(Inclusive of all taxes)' : ''}
-                                                    </Typography>
+                                                    </Typography> */}
                                                 </>
                                             })}
                                         </Stack>

@@ -260,7 +260,9 @@ const TestSeriesShowcaseSection = ({ endpointsUrl, firstFilter, secondFilter, th
                             // console.log("🎯 Auto-selected Level Two:", levelTwoData[0]);
 
                             // Check if level two has children (level three)
-                            const levelThreeData = levelTwoData[0].child || [];
+                            const levelThreeData = (levelTwoData[0].child || []).sort((a, b) =>
+                                (a.name || '').localeCompare(b.name || '', undefined, { numeric: true })
+                            );
                             setLevelThree(levelThreeData);
                             // console.log("📚 Level Three Data (courses):", levelThreeData);
 
@@ -442,7 +444,9 @@ const TestSeriesShowcaseSection = ({ endpointsUrl, firstFilter, secondFilter, th
 
         // Update level three based on level two selection
         const selected = levelTwo.find(item => item.id === id);
-        const levelThreeData = selected?.child || [];
+        const levelThreeData = (selected?.child || []).sort((a, b) =>
+            (a.name || '').localeCompare(b.name || '', undefined, { numeric: true })
+        );
         setLevelThree(levelThreeData);
         // console.log("📚 Updated Level Three Data:", levelThreeData);
 
@@ -691,10 +695,10 @@ const TestSeriesShowcaseSection = ({ endpointsUrl, firstFilter, secondFilter, th
                         {/* <HomeRoundedIcon /> */}
                         <Button
                             variant="outlined"
-                            component='a'
-                            href='/'
+                            // component='a'
+                            // href='/'
 
-                            // onClick={() => navigate(-1)}
+                            onClick={() => navigate(-1)}
                             startIcon={<ArrowForwardIcon sx={{ transform: 'rotate(180deg)' }} />}
                             sx={{
                                 mb: 2,
