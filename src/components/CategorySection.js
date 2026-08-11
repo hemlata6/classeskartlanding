@@ -115,8 +115,8 @@ const CategorySection = () => {
             {categories.map((category, index) => (
               <Grid item xs={12} md={4} key={index}>
                 <Box
-                  component={category.type === 'CS' ? 'a' : 'div'}
-                  href={category.type === 'CS' ? '/test-series' : undefined}
+                  component='a'
+                  href={'/test-series'}
                   sx={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
                 >
                 <motion.div
