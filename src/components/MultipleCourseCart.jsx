@@ -105,7 +105,7 @@ const MultipleCourseCart = () => {
     };
 
     const handleWhatsApp = () => {
-        const url = 'https://api.whatsapp.com/send/?phone=9049730883&text=Hi+Team%2C+is+there+any+related+service+available+%3F&type=phone_number&app_absent=0';
+        const url = 'https://api.whatsapp.com/send/?phone=7498597352&text=Hi+Team%2C+is+there+any+related+service+available+%3F&type=phone_number&app_absent=0';
         window.open(url, '_blank', 'noreferrer');
     };
 

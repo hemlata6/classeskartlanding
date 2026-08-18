@@ -298,11 +298,11 @@ function AppContent() {
           right: 35,
           zIndex: 1000,
         }}
-        onClick={() => window.location.href = 'tel:+919049730883'}
+        onClick={() => window.location.href = 'tel:+917498597352'}
       >
         <CallIcon />
       </Fab>
-      <FloatingWhatsApp phoneNumber={'+91-9049730883'} accountName="ClassKart"
+      <FloatingWhatsApp phoneNumber={'+91-7498597352'} accountName="ClassKart"
         avatar={whatsApplog}
         chatMessage="Hello! How can I help you?" className="pro-vidya-whatsapp-avatar" />
       {/* Footer */}

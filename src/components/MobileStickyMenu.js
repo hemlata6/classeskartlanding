@@ -24,13 +24,13 @@ const MobileStickyMenu = ({ cartCount = 0 }) => {
     {
       icon: WhatsAppIcon,
       color: '#25d366',
-      action: () => window.open('https://wa.me/919049730883', '_blank'),
+      action: () => window.open('https://wa.me/917498597352', '_blank'),
       label: 'WhatsApp',
     },
     {
       icon: CallIcon,
       color: '#4caf50',
-      action: () => window.open('tel:+919049730883', '_self'),
+      action: () => window.open('tel:+917498597352', '_self'),
       label: 'Call',
     },
     // {

@@ -55,7 +55,7 @@ const FooterBannerSlider = () => {
                         id: 534,
                         banner: "classioclasskart/image/banner1744626048971",
                         domains: [{ name: "VG Study Hub" }],
-                        createdByName: "9049730883"
+                        createdByName: "7498597352"
                     }
                 ]);
             }
