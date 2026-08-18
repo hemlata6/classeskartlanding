@@ -32,11 +32,10 @@ const FooterBannerSlider = () => {
             // console.log("Banner response:", response);
 
             if (response && response.banners) {
-                let filteredBanners = response.banners.filter(banner =>
-                    banner.active === true &&
-                    banner.domain === "Footer Banner" &&
-                    (!banner.domains || banner.domains.length === 0) &&
-                    (!banner.groups || banner.groups.length === 0)
+                let filteredBanners = response.banners.filter(
+                    banner =>
+                        banner.active === true &&
+                        banner.group === "Footer Banner"
                 );
 
                 // Sort banners by creation date (newest first)
@@ -142,7 +141,7 @@ const FooterBannerSlider = () => {
         <Box
             sx={{
                 width: '100vw',
-                aspectRatio: '3/1',
+                aspectRatio: '16/1',
                 position: 'relative',
                 overflow: 'hidden',
                 margin: 0,
@@ -150,7 +149,7 @@ const FooterBannerSlider = () => {
                 marginLeft: 'calc(-50vw + 50%)',
                 marginRight: 'calc(-50vw + 50%)',
                 mt: [4.5, 5], // Add top padding for fixed header
-                height: isMobile ? '20vh' : '65vh'
+                height: isMobile ? '20vh' : '70vh'
             }}
         >
             {/* Carousel Container */}

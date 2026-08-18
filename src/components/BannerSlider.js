@@ -148,7 +148,7 @@ const BannerSlider = () => {
         padding: 0,
         marginLeft: 'calc(-50vw + 50%)',
         marginRight: 'calc(-50vw + 50%)',
-        mt:[4.5, 5], // Add top padding for fixed header
+        mt:[4.5, 5.5], // Add top padding for fixed header
         height: isMobile ? '20vh' : '65vh'
       }}
     >
