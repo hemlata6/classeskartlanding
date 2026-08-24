@@ -51,6 +51,8 @@ const ProceedToCheckoutForm = ({ cartCourses, setProceedToCheckoutModal, setOpen
         return isCouponValid ? '#329908' : 'red';
     };
 
+    const payableAmount = Math.max(finalAmounts - couponDiscount, 0);
+
     const handleNumberChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value) && value.length <= 10) {
@@ -108,6 +110,7 @@ const ProceedToCheckoutForm = ({ cartCourses, setProceedToCheckoutModal, setOpen
         try {
             const response = await axios.post(BASE_URL + `/student/coupon/verify`, body);
             // const response = await CourseNetwrok.checkCouponApi(body);
+            // console.log("Coupon Response:", response.data);
             if (response.data.errorCode === 0) {
                 setCouponDiscount(response.data?.discount);
                 setIsCouponValid(response.data?.valid);
@@ -131,7 +134,7 @@ const ProceedToCheckoutForm = ({ cartCourses, setProceedToCheckoutModal, setOpen
             "email": email,
             "instId": instId,
             "campaignId": null,
-            "coupon": "",
+            "coupon": isCouponValid ? couponNumber : "",
             "coursePricingId": 0,
             "entityModals": payloadCart
         }
@@ -596,9 +599,25 @@ const ProceedToCheckoutForm = ({ cartCourses, setProceedToCheckoutModal, setOpen
                                             fontSize: { xs: '1.25rem', sm: '1.25rem', md: '1.25rem', lg: '1.25rem' },
                                         }}
                                     >
-                                        ₹{finalAmounts.toFixed(2)}
+                                        ₹{payableAmount.toFixed(2)}
                                     </Typography>
                                 </Stack>
+                                {couponDiscount > 0 && (
+                                    <Stack
+                                        direction="row"
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                        spacing={1}
+                                        sx={{ mt: 1.5, pt: 1.5, borderTop: '1px dashed rgba(255, 255, 255, 0.35)' }}
+                                    >
+                                        <Typography sx={{ fontSize: '12px', fontWeight: '600', color: 'rgba(255, 255, 255, 0.9)', textDecoration: 'line-through' }}>
+                                            ₹{finalAmounts.toFixed(2)}
+                                        </Typography>
+                                        <Typography sx={{ fontSize: '12px', fontWeight: '700', color: '#a7f3d0' }}>
+                                            Coupon: -₹{couponDiscount.toFixed(2)}
+                                        </Typography>
+                                    </Stack>
+                                )}
                             </Box>
 
                             {/* Payment Button */}

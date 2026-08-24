@@ -537,7 +537,7 @@ const MultipleCourseCart = () => {
                                     <Box sx={{ p: 3, bgcolor: '#ffffff' }}>
                                         <Stack spacing={2} sx={{ mb: 3 }}>
                                             {cartCourses.map((item, i) => {
-                                                console.log("iiiiiii", item);
+                                                // console.log("iiiiiii", item);
 
                                                 return <>
                                                     <Box key={i} sx={{
